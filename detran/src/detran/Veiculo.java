@@ -3,14 +3,11 @@ package detran;
 import java.util.ArrayList;
 
 public class Veiculo {
-
+    private ArrayList<Passageiros> passageiros;
     protected String modelo;    
     protected int anoFabricação;
-    protected ArrayList<Passageiros> passageiros = new ArrayList<Passageiros>();
     protected Motorista motorista;
 
-    Passageiros p1;
-    
     public Veiculo(){
         this("", 0, null);
     }
@@ -19,20 +16,27 @@ public class Veiculo {
         this.modelo = modelo;
         this.anoFabricação = anoFabricação;
         this.motorista = motorista;
+        this.passageiros = new ArrayList<>();
+    }
+
+    public void addPassageiro(Passageiros passageiro){
+        this.passageiros.add(passageiro);
+    }
+    public ArrayList<Passageiros> getPassageiros() {
+        return this.passageiros;
     }
 
     @Override
     public String toString() {
-        StringBuilder passageirosStr = new StringBuilder();
-        for (Passageiros passageiros : passageiros){
-            passageirosStr.append("\n- ").append(passageiros.toString());
-        }
+        String info = "Passageiros: \n";
+        for (Passageiros passageiro : this.passageiros) {
+        info += passageiro.toString() + "\n";
+    }
         return "\nVeiculo: " + modelo 
-        + "\nanoFabricação: " 
-        + anoFabricação  
-        + "\npassageiros: " 
-        + passageirosStr.toString() 
-        + motorista.toString();
+        + "\nAno de Fabricação: " 
+        + anoFabricação + "\n" 
+        + motorista.toString() + "\n"
+        + info;
     }
 
     public String getModelo() {
@@ -46,12 +50,6 @@ public class Veiculo {
     }
     public void setAnoFabricação(int anoFabricação) {
         this.anoFabricação = anoFabricação;
-    }
-    public ArrayList<Passageiros> getPassageiros() {
-        return passageiros;
-    }
-    public void setPassageiros(ArrayList<Passageiros> passageiros) {
-        this.passageiros = passageiros;
     }
     public Motorista getMotorista() {
         return motorista;

@@ -9,18 +9,47 @@ public class Acidente {
     Rodovia rodovia;
     private int mes;
     private int qtdVitimas;
+    private int qtdFatal = 0;
 
     public Acidente(){
-        this(null, null, null, 0, 0);
+        this(null, 0, 0);
     }
     
-    public Acidente(ArrayList<Veiculo> veiculo, Passageiros passageiros, Rodovia rodovia, int mes, int qtdVitimas) {
-        this.veiculo = veiculo;
-        this.passageiros = passageiros;
+    public Acidente(Rodovia rodovia, int mes, int qtdVitimas) {
+        this.veiculo = new ArrayList<>();
         this.rodovia = rodovia;
         this.mes = mes;
         this.qtdVitimas = qtdVitimas;
     }
+
+    @Override
+    public String toString() {
+
+        String infoVeiculos = "Veiculos envolvidos: \n";
+        for (Veiculo veiculo : this.veiculo) {
+        infoVeiculos += veiculo.toString() + "\n";
+        }
+        return rodovia + "\nMes: " + mes
+                + "\nVitimas Fatais: " + qtdFatal + "\n" + infoVeiculos;
+    }
+
+    public int contagemFatais(){
+    for (Veiculo veiculo : veiculo){
+        for (Passageiros passageiro : veiculo.getPassageiros()){
+            if (passageiro.isFatal()){
+                qtdFatal++;
+            }
+        } 
+        if (veiculo.getMotorista().isFatal()){
+            qtdFatal++;
+        }
+    } 
+    return qtdFatal;
+} 
+    public void addVeiculos(Veiculo veiculo){
+        this.veiculo.add(veiculo);
+    }
+
     public ArrayList<Veiculo> getVeiculo() {
         return veiculo;
     }
@@ -43,12 +72,24 @@ public class Acidente {
         return mes;
     }
     public void setMes(int mes) {
+        if (mes >= 0 && mes <= 12) {
         this.mes = mes;
+    } else {
+        System.out.println("Mês inválido. Insira um número inteiro de 0 a 12.");
+        }
     }
     public int getQtdVitimas() {
         return qtdVitimas;
     }
     public void setQtdVitimas(int qtdVitimas) {
         this.qtdVitimas = qtdVitimas;
+    }
+
+    public int getQtdFatal() {
+        return qtdFatal;
+    }
+
+    public void setQtdFatal(int qtdFatal) {
+        this.qtdFatal = qtdFatal;
     }
 }

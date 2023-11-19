@@ -16,7 +16,7 @@ public class Rodovia {
     
     @Override
     public String toString() {
-        return "Rodovia: " + getSigla() + ", periculosidade: " + getPericulosidade()+ ", Quantidade de acidentes:  " +getQtdAcidente();
+        return "Rodovia: " + getSigla() + " - periculosidade: " + getPericulosidade()+ " - Quantidade de acidentes:  " +getQtdAcidente();
     }
 
     public String getSigla() {
@@ -30,7 +30,7 @@ public class Rodovia {
         if (qtdAcidente <= 5) {
             periculosidade = "BAIXA"; 
         } else if (qtdAcidente > 5 && qtdAcidente <= 15) {
-            periculosidade = "MEDIA";
+            periculosidade = "MÉDIA";
         } else { 
             periculosidade = "AlTA";
         }  

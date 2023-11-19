@@ -10,15 +10,16 @@ public class Motorista extends Pessoa{
         this.nivelAlcool = nivelAlcool;
     }
 
-    public Motorista(String nome, int idade, String string, double nivelAlcool) {
-        super(nome, idade, string);
+    public Motorista(String nome, int idade, String string, boolean fatal,double nivelAlcool) {
+        super(nome, idade, string, fatal);
         this.nivelAlcool = nivelAlcool;
     }
 
     
     @Override
     public String toString() {
-        return "Motorista: " + getNome() + "Nivel alcool: " + nivelAlcool + ", embriagado: " + isEmbriagado();
+        return "Motorista: " + getNome() + "\nNivel alcool: " + nivelAlcool + "\nembriagado: " + isEmbriagado()
+        + "\nFatal: " + isFatal();
     }
 
     public double getNivelAlcool() {
