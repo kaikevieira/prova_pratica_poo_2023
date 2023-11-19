@@ -4,19 +4,18 @@ public class Rodovia {
 
     private String sigla;
     private String periculosidade;
-    private int qtdAcidente;
+    private Acidente acidente;
 
     public Rodovia() {
-        this("", 0);
+        this("");
     }
-    public Rodovia(String sigla, int qtdAcidente) {
+    public Rodovia(String sigla) {
         this.sigla = sigla;
-        this.qtdAcidente = qtdAcidente;
     }
     
     @Override
     public String toString() {
-        return "Rodovia: " + getSigla() + " - periculosidade: " + getPericulosidade()+ " - Quantidade de acidentes:  " +getQtdAcidente();
+        return "Rodovia: " + getSigla() + " | periculosidade: " + getPericulosidade()+ " | Quantidade de acidentes:  " + acidente.getAcidentes().size();
     }
 
     public String getSigla() {
@@ -27,9 +26,9 @@ public class Rodovia {
     } 
     //5 ou menos = baixa / 6 a 15 = media / mais que 15 = alta
     public String getPericulosidade() {
-        if (qtdAcidente <= 5) {
+        if (acidente.getAcidentes().size() <= 5) {
             periculosidade = "BAIXA"; 
-        } else if (qtdAcidente > 5 && qtdAcidente <= 15) {
+        } else if (acidente.getAcidentes().size() > 5 && acidente.getAcidentes().size() <= 15) {
             periculosidade = "MÉDIA";
         } else { 
             periculosidade = "AlTA";
@@ -39,11 +38,6 @@ public class Rodovia {
     public void setPericulosidade(String periculosidade) { 
         this.periculosidade = periculosidade;
     }
-    public int getQtdAcidente() {
-        return qtdAcidente;
-    }
-    public void setQtdAcidente(int qtdAcidente) {
-        this.qtdAcidente = qtdAcidente;
-    }
-    
 }
+    
+

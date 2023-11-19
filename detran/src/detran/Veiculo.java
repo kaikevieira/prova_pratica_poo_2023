@@ -3,7 +3,7 @@ package detran;
 import java.util.ArrayList;
 
 public class Veiculo {
-    private ArrayList<Passageiros> passageiros;
+    protected ArrayList<Passageiros> passageiros;
     protected String modelo;    
     protected int anoFabricação;
     protected Motorista motorista;
@@ -28,13 +28,13 @@ public class Veiculo {
 
     @Override
     public String toString() {
-        String info = "Passageiros: \n";
+        String info = "Passageiros: ";
         for (Passageiros passageiro : this.passageiros) {
         info += passageiro.toString() + "\n";
     }
         return "\nVeiculo: " + modelo 
-        + "\nAno de Fabricação: " 
-        + anoFabricação + "\n" 
+        + " | Ano de Fabricação: " 
+        + anoFabricação 
         + motorista.toString() + "\n"
         + info;
     }

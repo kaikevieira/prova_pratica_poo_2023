@@ -12,8 +12,8 @@ public class Passageiros extends Pessoa{
 
     @Override
     public String toString() {
-        return "Nome: " + getNome() + ", Idade: " + getIdade() + ", Sexo: " + getSexo()
-        + "\nFatal: " + isFatal();
+        return getNome() + " | Idade: " + getIdade() + " | Sexo: " + getSexo()
+        + " | Fatal: " + isFatal();
     }
 
 

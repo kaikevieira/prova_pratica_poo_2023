@@ -18,8 +18,8 @@ public class Motorista extends Pessoa{
     
     @Override
     public String toString() {
-        return "Motorista: " + getNome() + "\nNivel alcool: " + nivelAlcool + "\nembriagado: " + isEmbriagado()
-        + "\nFatal: " + isFatal();
+        return "\nMotorista: " + getNome() + " | Nivel alcool: " + nivelAlcool + " | embriagado: " + isEmbriagado()
+        + " | Fatal: " + isFatal();
     }
 
     public double getNivelAlcool() {

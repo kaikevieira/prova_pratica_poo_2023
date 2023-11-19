@@ -4,37 +4,43 @@ import java.util.ArrayList;
 
 public class Acidente {
 
-    ArrayList<Veiculo> veiculo;
-    Passageiros passageiros;
-    Rodovia rodovia;
+    private ArrayList<Acidente> acidentes = new ArrayList<>();
+    private ArrayList<Veiculo> veiculo;
+    private ArrayList<Motorista> qtdEmbriagados = new ArrayList<>();
+    private Passageiros passageiros;
+    private Motorista motorista;
+    private Rodovia rodovia;
     private int mes;
-    private int qtdVitimas;
     private int qtdFatal = 0;
     private int qtdFeridos = 0;
 
     public Acidente() {
-        this(null, 0, 0);
+        this(null, 0);
     }
 
-    public Acidente(Rodovia rodovia, int mes, int qtdVitimas) {
+    public Acidente(Rodovia rodovia, int mes) {
         this.veiculo = new ArrayList<>();
         this.rodovia = rodovia;
         this.mes = mes;
-        this.qtdVitimas = qtdVitimas;
+        acidentes.add(this);
+        System.out.println(acidentes.size());
+
     }
 
     @Override
     public String toString() {
 
-        String infoVeiculos = "Veiculos envolvidos: \n";
+        String infoVeiculos = "\nVeiculos envolvidos: \n";
         for (Veiculo veiculo : this.veiculo) {
             infoVeiculos += veiculo.toString() + "\n";
         }
         return rodovia + "\nMes: " + mes
-                + "\nVitimas Fatais: " + qtdFatal 
+                + "\nVitimas Fatais: " + qtdFatal
                 + "\nVitimas Feridas: " + qtdFeridos
-                + "\n" + infoVeiculos;
+                + "\n" + infoVeiculos
+                + qtdEmbriagados.toString();
     }
+
     public int contagemFataisEFeridos() {
         for (Veiculo veiculo : veiculo) {
             for (Passageiros passageiro : veiculo.getPassageiros()) {
@@ -51,6 +57,36 @@ public class Acidente {
             }
         }
         return qtdFatal;
+    }
+
+    public String listaAcidenteEmbriagados() {
+        StringBuilder lista = new StringBuilder();
+
+        for (Acidente acidente : acidentes) {
+            boolean embriagado = false;
+
+            for (Veiculo veiculo : acidente.getVeiculo()) {
+                if (veiculo.getMotorista().isEmbriagado()) {
+                    embriagado = true;
+                    break;
+                }
+            }
+
+            if (embriagado) {
+                lista.append("Nome do Acidente: ").append(acidente.getRodovia().toString()).append(" | Mes: ")
+                        .append(acidente.getMes()).append(" | Vitimas Fatais: ")
+                        .append(acidente.getQtdFatal()).append(" | Vitimas Feridas: ")
+                        .append(acidente.getQtdFeridos()).append("\nVeiculos envolvidos:\n");
+
+                for (Veiculo veiculo : acidente.getVeiculo()) {
+                    lista.append(veiculo.toString()).append("\n");
+                }
+
+                lista.append("\n");
+            }
+        }
+
+        return lista.toString();
     }
 
     public int getQtdFeridos() {
@@ -101,19 +137,36 @@ public class Acidente {
         }
     }
 
-    public int getQtdVitimas() {
-        return qtdVitimas;
-    }
-
-    public void setQtdVitimas(int qtdVitimas) {
-        this.qtdVitimas = qtdVitimas;
-    }
-
     public int getQtdFatal() {
         return qtdFatal;
     }
 
     public void setQtdFatal(int qtdFatal) {
         this.qtdFatal = qtdFatal;
+    }
+
+    public ArrayList<Motorista> getQtdEmbriagados() {
+        return qtdEmbriagados;
+    }
+
+    public void setQtdEmbriagados(ArrayList<Motorista> qtdEmbriagados) {
+        this.qtdEmbriagados = qtdEmbriagados;
+
+    }
+
+    public ArrayList<Acidente> getAcidentes() {
+        return acidentes;
+    }
+
+    public void setAcidentes(ArrayList<Acidente> acidentes) {
+        this.acidentes = acidentes;
+    }
+
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 }
