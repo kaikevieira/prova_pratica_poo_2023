@@ -7,8 +7,8 @@ public class Main {
         //System.out.println(r.toString());
         Motorista m1 = new Motorista("Joao", 19, "Masculino",true, 0.04);
         Motorista m2 = new Motorista("ANa Beatriz", 20, "Feminino",true, 0.07);
-        Passageiros p1 = new Passageiros("Kaike", 19, "Masculino",true);
-        Passageiros p2 = new Passageiros("Kaike", 19, "Masculino",true);
+        Passageiros p1 = new Passageiros("Kaike", 19, "Masculino",false);
+        Passageiros p2 = new Passageiros("Kaike", 19, "Masculino",false);
         Passageiros p3 = new Passageiros("Kaike", 19, "Masculino",true);
         Veiculo v1 = new Veiculo("Siena", 2009, m1);
         Veiculo v2 = new Veiculo("Ferrari", 2021, m2);
@@ -19,7 +19,7 @@ public class Main {
         Acidente a1 = new Acidente(r, 2, 3);
         a1.addVeiculos(v1);
         a1.addVeiculos(v2);
-        a1.contagemFatais();
+        a1.contagemFataisEFeridos();
         System.out.println(a1.toString());
 
     }
