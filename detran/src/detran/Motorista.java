@@ -10,8 +10,8 @@ public class Motorista extends Pessoa{
         this.nivelAlcool = nivelAlcool;
     }
 
-    public Motorista(String nome, int idade, String string, boolean fatal,double nivelAlcool) {
-        super(nome, idade, string, fatal);
+    public Motorista(String nome, int idade, String sexo, boolean fatal,double nivelAlcool) {
+        super(nome, idade, sexo, fatal);
         this.nivelAlcool = nivelAlcool;
     }
 

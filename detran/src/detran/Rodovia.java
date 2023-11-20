@@ -1,43 +1,74 @@
 package detran;
 
-public class Rodovia {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Rodovia {
     private String sigla;
     private String periculosidade;
     private Acidente acidente;
+    private List<Acidente> acidentes;
 
     public Rodovia() {
         this("");
     }
+
     public Rodovia(String sigla) {
         this.sigla = sigla;
+        this.acidente = new Acidente(this, 0);
+        this.acidentes = new ArrayList<>();
     }
-    
+        
     @Override
     public String toString() {
-        return "Rodovia: " + getSigla() + " | periculosidade: " + getPericulosidade()+ " | Quantidade de acidentes:  " + acidente.getAcidentes().size();
+        return "Rodovia: " + sigla + " | periculosidade: " + periculosidade;
+    }
+
+    public void adicionarAcidente(Acidente acidente) {
+        this.acidentes.add(acidente);
+        this.periculosidade = getPericulosidade();
+    }
+
+    public int contarAcidentes() {
+        return acidentes.size();
     }
 
     public String getSigla() {
         return sigla;
     }
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    } 
-    //5 ou menos = baixa / 6 a 15 = media / mais que 15 = alta
     public String getPericulosidade() {
-        if (acidente.getAcidentes().size() <= 5) {
+        int quantidadeAcidentes = acidentes.size();
+        if (quantidadeAcidentes <= 5) {
             periculosidade = "BAIXA"; 
-        } else if (acidente.getAcidentes().size() > 5 && acidente.getAcidentes().size() <= 15) {
+        } else if (quantidadeAcidentes > 5 && quantidadeAcidentes <= 15) {
             periculosidade = "MÉDIA";
         } else { 
-            periculosidade = "AlTA";
+            periculosidade = "ALTA";
         }  
         return periculosidade;
     }
-    public void setPericulosidade(String periculosidade) { 
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public void setPericulosidade(String periculosidade) {
         this.periculosidade = periculosidade;
     }
-}
-    
 
+    public Acidente getAcidente() {
+        return acidente;
+    }
+
+    public void setAcidente(Acidente acidente) {
+        this.acidente = acidente;
+    }
+
+    public List<Acidente> getAcidentes() {
+        return acidentes;
+    }
+
+    public void setAcidentes(List<Acidente> acidentes) {
+        this.acidentes = acidentes;
+    }
+}

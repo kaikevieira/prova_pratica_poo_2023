@@ -23,7 +23,7 @@ public class Acidente {
         this.rodovia = rodovia;
         this.mes = mes;
         acidentes.add(this);
-        System.out.println(acidentes.size());
+        
 
     }
 
@@ -34,11 +34,10 @@ public class Acidente {
         for (Veiculo veiculo : this.veiculo) {
             infoVeiculos += veiculo.toString() + "\n";
         }
-        return rodovia + "\nMes: " + mes
-                + "\nVitimas Fatais: " + qtdFatal
-                + "\nVitimas Feridas: " + qtdFeridos
-                + "\n" + infoVeiculos
-                + qtdEmbriagados.toString();
+        return rodovia + " | Mes: " + mes
+                + " | Vitimas Fatais: " + qtdFatal
+                + " | Vitimas Feridas: " + qtdFeridos
+                + "\n" + infoVeiculos;
     }
 
     public int contagemFataisEFeridos() {
@@ -73,10 +72,10 @@ public class Acidente {
             }
 
             if (embriagado) {
-                lista.append("Nome do Acidente: ").append(acidente.getRodovia().toString()).append(" | Mes: ")
+                lista.append(acidente.getRodovia().toString()).append(" | Mes: ")
                         .append(acidente.getMes()).append(" | Vitimas Fatais: ")
                         .append(acidente.getQtdFatal()).append(" | Vitimas Feridas: ")
-                        .append(acidente.getQtdFeridos()).append("\nVeiculos envolvidos:\n");
+                        .append(acidente.getQtdFeridos()).append("\n\nVeiculos envolvidos:\n");
 
                 for (Veiculo veiculo : acidente.getVeiculo()) {
                     lista.append(veiculo.toString()).append("\n");
