@@ -16,7 +16,4 @@ public class Passageiros extends Pessoa{
         + " | Fatal: " + isFatal();
     }
 
-
-    
-    
 }

@@ -8,6 +8,7 @@ public class Acidente {
     private int mes;
     private int qtdFatal = 0;
     private int qtdFeridos = 0;
+    private int qtdVitimas = 0;
 
     public Acidente() {
         this(null, 0);
@@ -31,21 +32,36 @@ public class Acidente {
     }
 
     public int contagemFataisEFeridos() {
+    	qtdVitimas = contagemFatais() + contagemFerido();
+    	return qtdVitimas;
+    }
+    
+    public int contagemFatais() {
         for (Veiculo veiculo : veiculos) {
             for (Passageiros passageiro : veiculo.getPassageiros()) {
                 if (passageiro.isFatal()) {
                     qtdFatal++;
-                } else {
-                    qtdFeridos++;
                 }
             }
             if (veiculo.getMotorista().isFatal()) {
                 qtdFatal++;
-            } else {
-                qtdFeridos++;
             }
         }
         return qtdFatal;
+    }
+    
+    public int contagemFerido() {
+        for (Veiculo veiculo : veiculos) {
+            for (Passageiros passageiro : veiculo.getPassageiros()) {
+                if (!passageiro.isFatal()) {
+                	qtdFeridos++;
+                }
+            }
+            if (!veiculo.getMotorista().isFatal()) {
+            	qtdFeridos++;
+            }
+        }
+        return qtdFeridos;
     }
 
     public ArrayList<Veiculo> getVeiculos() {

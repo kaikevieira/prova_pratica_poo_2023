@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Operacoes {
-    private static List<Rodovia> rodovias = new ArrayList<>();
-    private static List<Acidente> acidentesRegistrados = new ArrayList<>();
-    private static List<Veiculo> veiculos = new ArrayList<>();
+    private static ArrayList<Rodovia> rodovias = new ArrayList<Rodovia>();
+    private static ArrayList<Acidente> acidentesRegistrados = new ArrayList<Acidente>();
+    private static ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
 
     public static void adicionarRodovia(Rodovia rodovia) {
         rodovias.add(rodovia);
@@ -39,11 +39,10 @@ public class Operacoes {
     }
     public static void acidentesPericulosidade() {
         int baixo = 0, medio = 0, alto = 0;
-    
-        for (Rodovia rodovia : rodovias) {
-            String periculosidade = rodovia.getPericulosidade();
-    
-            switch (periculosidade) {
+
+        for (Acidente acidentesRegistrados : acidentesRegistrados) {
+
+            switch (acidentesRegistrados.getRodovia().getPericulosidade()) {
                 case "BAIXA":
                     baixo++;
                     break;
@@ -57,15 +56,25 @@ public class Operacoes {
                     break;
             }
         }
-    
         System.out.println("Quantidade de acidentes por nível de periculosidade:");
         System.out.println("Baixa: " + baixo + " acidente(s)");
         System.out.println("Média: " + medio + " acidente(s)");
         System.out.println("Alta: " + alto + " acidente(s)");
     }
+    public static void acidentesBicicleta() {
+    	int count = 0;
+        for (Acidente acidentesRegistrados : acidentesRegistrados) {
+        	for (Veiculo veiculo : acidentesRegistrados.getVeiculos()) {
+                if (veiculo instanceof Bicicleta) {
+                	count++;
+                }
+            }     	
+        }
+        System.out.println("Quantidade de acidentes envolvendo bicicletas: " + count);
+    }
     public static void veiculosCargaAcidentados() {
-        for (Acidente acidente : acidentesRegistrados) {
-            for (Veiculo veiculo : acidente.getVeiculos()) {
+        for (Acidente acidentesRegistrados : acidentesRegistrados) {
+            for (Veiculo veiculo : acidentesRegistrados.getVeiculos()) {
                 if (veiculo instanceof VeiculoCarga) {
                     StringBuilder result = new StringBuilder();
                     result.append(veiculo.toString());
@@ -73,6 +82,17 @@ public class Operacoes {
                     System.out.println(result.toString());
                 }
             }
+        }
+    }
+    public static void contagemFataisPorRodovia() {
+        for(Rodovia rodovia : rodovias) {
+            int count = 0;
+            for(Acidente acidente : rodovia.getAcidentes()) {
+                if(acidente.contagemFataisEFeridos() > 0) {
+                    count++;
+                }
+            }
+            System.out.println(rodovia.toString() + " | " + "Quantidade de Acidentes Fatais: " + count);
         }
     }
 }
