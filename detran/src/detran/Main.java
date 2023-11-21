@@ -25,7 +25,7 @@ public class Main {
         Operacoes.adicionarVeiculo(veiculo1);
         Operacoes.registrarAcidente(acidente1);
         Operacoes.registrarAcidente(acidente2);*/
-
+        //oiiiiiiiiii
 
         Operacoes.acidentesPericulosidade();
     }
