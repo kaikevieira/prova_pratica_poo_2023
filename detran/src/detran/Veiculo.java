@@ -32,7 +32,7 @@ public class Veiculo {
         for (Passageiros passageiro : this.passageiros) {
         info += passageiro.toString() + "\n";
     }
-        return "\nVeiculo: " + modelo 
+        return "\nVeiculo de Passeio: " + modelo 
         + " | Ano de Fabricação: " 
         + anoFabricação 
         + motorista.toString() + "\n"

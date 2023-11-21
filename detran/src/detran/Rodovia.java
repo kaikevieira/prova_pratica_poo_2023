@@ -10,11 +10,12 @@ public class Rodovia {
     private List<Acidente> acidentes;
 
     public Rodovia() {
-        this("");
+        this("", "");
     }
 
-    public Rodovia(String sigla) {
+    public Rodovia(String sigla, String periculosidade) {
         this.sigla = sigla;
+        this.periculosidade = periculosidade;
         this.acidente = new Acidente(this, 0);
         this.acidentes = new ArrayList<>();
     }
@@ -23,10 +24,9 @@ public class Rodovia {
     public String toString() {
         return "Rodovia: " + sigla + " | periculosidade: " + periculosidade;
     }
-
+    
     public void adicionarAcidente(Acidente acidente) {
         this.acidentes.add(acidente);
-        this.periculosidade = getPericulosidade();
     }
 
     public int contarAcidentes() {
@@ -37,14 +37,6 @@ public class Rodovia {
         return sigla;
     }
     public String getPericulosidade() {
-        int quantidadeAcidentes = acidentes.size();
-        if (quantidadeAcidentes <= 5) {
-            periculosidade = "BAIXA"; 
-        } else if (quantidadeAcidentes > 5 && quantidadeAcidentes <= 15) {
-            periculosidade = "MÉDIA";
-        } else { 
-            periculosidade = "ALTA";
-        }  
         return periculosidade;
     }
 

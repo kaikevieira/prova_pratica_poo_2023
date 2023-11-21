@@ -18,11 +18,11 @@ public class VeiculoCarga extends Veiculo{
         for (Passageiros passageiro : this.passageiros) {
         info += passageiro.toString() + "\n";
     }
-        return "\nVeiculo: " + modelo 
-        + "\nAno de Fabricação: " 
-        + anoFabricação + "\n" 
-        + motorista.toString() + "\n"
-        + "\nCarga: " + carga
+        return "\nVeiculo de Carga: " + modelo 
+        + " | Ano de Fabricação: " 
+        + anoFabricação 
+        + motorista.toString()
+        + " | Carga: " + carga + "\n"
         + info;
     }
 
