@@ -44,11 +44,12 @@ public class Main {
         Operacoes.registrarAcidente(acidente4);
         Operacoes.registrarAcidente(acidente5);
         
-        //Operacoes.acidentesPericulosidade();
-        //Operacoes.contagemFataisPorRodovia();
-        //Operacoes.contagemMaisAcidentesBicicletas();
-        //Operacoes.contagemVeiculosNovos();
-        //Operacoes.rodoviaComAcidentesCarnaval();
+        Operacoes.acidentesPericulosidade();
+        /*Operacoes.contagemFataisPorRodovia();
+        Operacoes.contagemMaisAcidentesBicicletas();
+        Operacoes.contagemVeiculosNovos();
+        Operacoes.rodoviaComAcidentesCarnaval();
         Operacoes.acidentesEmbriagados();
+        Operacoes.veiculosCargaAcidentados();*/
     }
 }

@@ -1,5 +1,7 @@
 package detran;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,28 +29,41 @@ public class OperacoesTest {
         acidente = new Acidente(rodovia, 2);
         bicicleta = new Bicicleta("VIKINGS", 2010, motorista);
         rodovia = new Rodovia("SC-290", "ALTA");
+        acidente.addVeiculo(veiculo);
+        rodovia.adicionarAcidente(acidente);    
+        Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculo);
+
     }
 
     @Test
     void testAcidentesEmbriagados() {
-    
-
-    
-    }
+        Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculo);
+        Operacoes.acidentesEmbriagados();
+        assertTrue(veiculo.getMotorista().isEmbriagado());
+}
 
     @Test
     void testAcidentesPericulosidade() {
-
+        Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculo);
+        Operacoes.acidentesPericulosidade();
+        assertEquals("SC-290", rodovia.getSigla());
+        assertEquals("ALTA", rodovia.getPericulosidade());
     }
 
     @Test
     void testAdicionarRodovia() {
-
+        Operacoes.adicionarRodovia(rodovia);
     }
 
     @Test
     void testAdicionarVeiculo() {
-
+        Operacoes.adicionarVeiculo(veiculo);
     }
 
     @Test
@@ -68,7 +83,7 @@ public class OperacoesTest {
 
     @Test
     void testRegistrarAcidente() {
-
+        Operacoes.registrarAcidente(acidente);
     }
 
     @Test
