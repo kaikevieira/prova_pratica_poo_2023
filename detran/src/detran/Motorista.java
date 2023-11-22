@@ -6,8 +6,8 @@ public class Motorista extends Pessoa{
     private boolean embriagado;
 
     
-    public Motorista(double nivelAlcool) {
-        this.nivelAlcool = nivelAlcool;
+    public Motorista() {
+        super();
     }
 
     public Motorista(String nome, int idade, String sexo, boolean fatal,double nivelAlcool) {
