@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class OperacoesTest {
 
-    Operacoes operacoes;
     Veiculo veiculo;
     VeiculoCarga veiculoCarga;
-    Pessoa pessoa;
     Passageiros passageiros;
     Motorista motorista;
     Acidente acidente;
@@ -20,21 +18,18 @@ public class OperacoesTest {
 
     @BeforeEach
     void executaAntes(){
-        operacoes = new Operacoes();
+        motorista = new Motorista("João", 23, "Masculino", true, 0.09);
         veiculo = new Veiculo("Palio", 2015, motorista);
         passageiros = new Passageiros("Kaike", 19, "Masculino", true);
-        motorista = new Motorista("João", 23, "Masculino", false, 0.09);
-        pessoa = new Pessoa();
         veiculoCarga = new VeiculoCarga("Scania", 2023, motorista, 25000);
-        acidente = new Acidente(rodovia, 2);
-        bicicleta = new Bicicleta("VIKINGS", 2010, motorista);
         rodovia = new Rodovia("SC-290", "ALTA");
+        acidente = new Acidente(rodovia, 02);
+        bicicleta = new Bicicleta("VIKINGS", 2010, motorista);
         acidente.addVeiculo(veiculo);
-        rodovia.adicionarAcidente(acidente);    
-        Operacoes.adicionarRodovia(rodovia);
-        Operacoes.registrarAcidente(acidente);
-        Operacoes.adicionarVeiculo(veiculo);
-
+        acidente.addVeiculo(bicicleta);
+        acidente.addVeiculo(veiculoCarga);
+        veiculo.addPassageiro(passageiros);
+        rodovia.adicionarAcidente(acidente);
     }
 
     @Test
@@ -68,17 +63,31 @@ public class OperacoesTest {
 
     @Test
     void testContagemFataisPorRodovia() {
-
+    	Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculo);
+        Operacoes.contagemFataisPorRodovia();
+        assertTrue(veiculo.getMotorista().isFatal());
+        assertTrue(veiculo.getPassageiros().get(0).isFatal());
+        
     }
 
     @Test
     void testContagemMaisAcidentesBicicletas() {
-
+    	Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(bicicleta);
+        Operacoes.contagemMaisAcidentesBicicletas();
+        assertEquals(bicicleta, acidente.getVeiculos().get(1));
     }
 
     @Test
     void testContagemVeiculosNovos() {
-
+    	Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculo);
+        Operacoes.contagemVeiculosNovos();
+        assertTrue(veiculo.getAnoFabricação() >= 2013);
     }
 
     @Test
@@ -88,11 +97,19 @@ public class OperacoesTest {
 
     @Test
     void testRodoviaComAcidentesCarnaval() {
-
+    	Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculo);
+        Operacoes.contagemVeiculosNovos();
+        assertEquals(2, acidente.getMes());
     }
 
     @Test
     void testVeiculosCargaAcidentados() {
-
+    	Operacoes.adicionarRodovia(rodovia);
+        Operacoes.registrarAcidente(acidente);
+        Operacoes.adicionarVeiculo(veiculoCarga);
+        Operacoes.veiculosCargaAcidentados();
+        assertEquals(veiculoCarga, acidente.getVeiculos().get(2));
     }
 }

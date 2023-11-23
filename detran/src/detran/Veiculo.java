@@ -56,5 +56,6 @@ public class Veiculo {
     }
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
-    }   
+    }
+	   
 }

@@ -89,13 +89,11 @@ public class Operacoes {
                     count++;
                 }
             }
-
             if (count > maxCount) {
                 maxCount = count;
                 rodoviaComMaisAcidentesFatais = rodovia;
             }
         }
-
         if (rodoviaComMaisAcidentesFatais != null) {
             System.out.println("Rodovia com mais acidentes fatais: " + rodoviaComMaisAcidentesFatais.toString() + " | "
                     + "Quantidade de Acidentes Fatais: " + maxCount);
